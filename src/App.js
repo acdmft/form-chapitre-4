@@ -1,9 +1,15 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
     super()
+
+    this.state = {
+      formSubmitted: false,
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePwdInput = this.handlePwdInput.bind(this);
@@ -29,7 +35,8 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('handlesubmit')
+    document.querySelector('form').hidden = true;
+    document.querySelector('.message').className = "message bg-secondary w-50 mx-auto d-flex";
   }
 
   render() {
@@ -38,6 +45,9 @@ class App extends React.Component {
         <div className="row d-flex justify-content-center">
           <div className="col col-lg-6 ">
             <h1 className="text-center">Login</h1>
+            {/* FORM SUBMITTED MESSAGE */}
+            <div className="message bg-secondary w-50 mx-auto d-none">Form submitted</div>
+            
             <form onSubmit={this.handleSubmit}>
               <label for="email" className="form-label mt-2">
                 Email address
